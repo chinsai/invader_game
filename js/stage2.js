@@ -31,6 +31,11 @@ var stage2 = function (){
 
 	})
 
+	// B (pause ボタンを離したとき)
+	scene.addEventListener(Event.B_BUTTON_UP, function(){
+		toPause();
+	})
+
 	//他のfunctionはここから書く
 
 	return scene;

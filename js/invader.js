@@ -46,8 +46,6 @@ var invader = function (){
 	beam.image = game.assets["images/beam.png"];
 	beam._style.zIndex = 2;
 	scene.addChild(beam);
-	// Zキーをaボタンとして割り当てる
-	game.keybind(90, "a");
 	// 敵全体を移動させるための座標を用意する
 	var enemyDX = 1;
 	var enemyDY = 0;
@@ -90,6 +88,12 @@ var invader = function (){
 		//---ここからコード
 
 	})
+
+	// B (pause ボタンを離したとき)
+	scene.addEventListener(Event.B_BUTTON_UP, function(){
+		toPause();
+	})
+
 
 	//他のfunctionはここから書く
 	// =============== 各種処理 ==================
