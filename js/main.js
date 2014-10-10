@@ -1,8 +1,8 @@
 enchant();
 
 
-var GAME_WIDTH = 320;
-var GAME_HEIGHT = 480;
+var GAME_WIDTH = 1280;
+var GAME_HEIGHT = 720;
 var GAME_FPS = 30;
 
 var isPaused = false;
@@ -15,7 +15,10 @@ window.onload = function(){
 	game.rootScene.backgroundColor = 'black';
 	game.fps = GAME_FPS;
 
-	game.preload('images/droid.png', 'images/beam.png', 'images/apple.png', 'images/laser.png', 'images/blast.png');
+	game.preload(
+		'images/mori.png', 
+		'images/droid.png', 'images/beam.png', 'images/apple.png', 'images/laser.png', 'images/blast.png'
+		);
 	// Zキーをaボタンとして割り当てる
 	game.keybind(32, "a");	//SPACE -> shoot
 	game.keybind(27, "b");	//ESC -> Pause

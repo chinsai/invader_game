@@ -22,15 +22,6 @@ var stage2 = function (){
 		//---ここからコード
 	})
 
-	// 画面にタッチしたことに対する処理
-	scene.addEventListener(Event.TOUCH_START, function(e) {
-		
-		//テスト用
-		game.replaceScene( startScreen() );
-		//---ここからコード
-
-	})
-
 	// B (pause ボタンを離したとき)
 	scene.addEventListener(Event.B_BUTTON_UP, function(){
 		toPause();
