@@ -16,10 +16,12 @@ window.onload = function(){
 	game.fps = GAME_FPS;
 
 	game.preload(
-		'images/mori.png', 
-		'images/droid.png', 'images/beam.png', 'images/apple.png', 'images/laser.png', 'images/blast.png'
+		'sound/stage1.mp3', 'sound/stage2.mp3', 'sound/stage3.mp3', 'sound/stage4.mp3', 
+		'images/intro.png', 'images/stage1.png', 'images/stage2.png', 'images/stage3.png', 'images/stage4.png', 'images/over.png', 
+		'images/speed.png','images/droid.png', 'images/beam.png', 'images/apple.png', 'images/laser.png', 'images/blast.png'
 		);
-	// Zキーをaボタンとして割り当てる
+
+	// Key setting
 	game.keybind(32, "a");	//SPACE -> shoot
 	game.keybind(27, "b");	//ESC -> Pause
 
@@ -30,7 +32,7 @@ window.onload = function(){
 
 		// データの読み込みが完了したら処理
 		game.replaceScene( startScreen() );
-
+		// game.replaceScene( introduction() );
 		// テスト用直接飛ぶ
 		// game.replaceScene( stage1() );
 		// game.replaceScene( stage2() );
@@ -39,8 +41,6 @@ window.onload = function(){
 		// game.replaceScene( gaveOver() );
 
 	}
-
-	
 
 	// ゲーム処理開始
 	game.start();

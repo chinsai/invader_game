@@ -13,7 +13,12 @@ var stage2 = function (){
 
 	// TODO
 	// 	シーンの設定
-
+	//background
+	var background = new Sprite(1280, 720);
+	background.image =  game.assets['images/stage2.png'];
+	background.x = 0;
+	background.y = 0;
+	scene.addChild(background);
 
 
 	// FRAMEごとに処理することはここにいれる

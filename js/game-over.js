@@ -10,22 +10,30 @@ var gameOver = function (){
 
 	// このシーンを管理するシーンの変数
 	var scene = new Scene();
-	scene.backgroundColor = 'red';
+
+
+	//background
+	var background = new Sprite(1280, 720);
+	background.image =  game.assets['images/over.png'];
+	background.x = 0;
+	background.y = 0;
+	scene.addChild(background);
 	
 	// タイトルの設定
-	var title = new Label('Game OVer')
-	title.font = '400 28px "Helvetica Neue"';
+	var title = new Label('Game Over')
+	title.font = '400 60px "Helvetica Neue"';
+	title.width = 800;
 	title.x = GAME_WIDTH/2 - title.width/2;		//中央にする
 	title.y = GAME_HEIGHT/2 - 100;				//中央より上
 	title.color = 'white';
 	title.textAlign = 'center';
-	title.scaleY = 2;
+	// title.scaleY = 2;
 	scene.addChild(title);
 	
 
 	// TRY AGAINボタンの設定
-	var againButton = new Label('Try Again');
-	againButton.font = '400 28px "Helvetica Neue"';
+	var againButton = new Label('Press SPACE to try again');
+	againButton.font = '400 18px "Helvetica Neue"';
 	againButton.x = GAME_WIDTH/2 - againButton.width/2;
 	againButton.y = GAME_HEIGHT/2 + 100;
 	againButton.color = 'white';
@@ -37,20 +45,15 @@ var gameOver = function (){
 	scene.addChild(againButton);
 
 
+	// SPACE を離したときにゲーム始まる
+	scene.addEventListener(Event.A_BUTTON_UP, function(){
+		game.replaceScene( startScreen() );
+	})
 
 	// FRAMEごとに処理することはここにいれる
 	scene.addEventListener(Event.ENTER_FRAME, function(){
 		//TODO
 		//---ここからコード
-	})
-
-	// 画面にタッチしたことに対する処理
-	scene.addEventListener(Event.TOUCH_START, function(e) {
-		
-		//テスト用
-		game.replaceScene( startScreen() );
-		//---ここからコード
-
 	})
 
 	//他のfunctionはここから書く

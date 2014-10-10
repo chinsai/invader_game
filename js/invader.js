@@ -14,6 +14,10 @@ var invader = function (){
 	// TODO
 	// 	シーンの設定
 
+
+	var bgm = game.assets['sound/stage1.mp3'];
+	bgm.play();
+
 	game.score = 0;
 	// 敵の総数を入れるカウンタ変数
 	var count = 0;
@@ -188,6 +192,7 @@ var invader = function (){
 		// }
 		for(var i=0; i<maxLaser; i++){
 			if (enemyLaser[i].intersect(fighter)){	// 接触したらゲームオーバー
+				bgm.stop();
 				scene.backgroundColor = "red";	// ゲームの背景色を赤色に設定
 				game.pause();
 				setTimeout(function(){game.replaceScene(gameOver());game.resume();}, 2000);
