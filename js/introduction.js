@@ -71,7 +71,8 @@ var introduction = function (){
 	//他のfunctionはここから書く
 
 	var nextStage = function(){
-		game.replaceScene( stage1() );
+		// game.replaceScene( stage1() );
+		game.replaceScene( invader() );
 	}
 
 	return scene;
