@@ -14,10 +14,9 @@ var invader = function (){
 	// TODO
 	// 	シーンの設定
 
-
+	//BGM
 	var bgm = game.assets['sound/stage1.mp3'];
 	bgm.play();
-	bgm.loop = true;
 
 	game.score = 0;
 	// 敵の総数を入れるカウンタ変数
@@ -30,6 +29,9 @@ var invader = function (){
 	var beamSpeed = 16;
 	var laserSpeed = 10;
 	var characterSpeed = 10;
+	// 敵全体を移動させるための座標を用意する
+	var enemyDX = 4;
+	var enemyDY = 0;
 	// 消した敵の総数を入れる変数
 	var total = 0;
 
@@ -57,14 +59,12 @@ var invader = function (){
 	// ビームの設定
 	var beam = new Sprite(4, 16);
 	beam.flag = false;	// ビームが発射されているかどうかのフラグ
-	beam.x = fighter.x + 14;	// 自機の中央に設置
-	beam.y = fighter.y - 8;	// 自機より少し上のY座標に設置
+	beam.x = fighter.x + fighter.width/2;	// 自機の中央に設置
+	beam.y = fighter.y - 11;	// 自機より少し上のY座標に設置
 	beam.image = game.assets["images/beam.png"];
 	beam._style.zIndex = 2;
 	scene.addChild(beam);
-	// 敵全体を移動させるための座標を用意する
-	var enemyDX = 4;
-	var enemyDY = 0;
+	
 	// 敵を描く
 	drawEnemy();
 	// 敵のレーザービームを初期化する
@@ -96,15 +96,6 @@ var invader = function (){
 
 	})
 
-	// 画面にタッチしたことに対する処理
-	scene.addEventListener(Event.TOUCH_START, function(e) {
-		
-		//テスト用
-		// game.replaceScene( startScreen() );
-		//---ここからコード
-
-	})
-
 	// B (pause ボタンを離したとき)
 	scene.addEventListener(Event.B_BUTTON_UP, function(){
 		toPause();
@@ -127,7 +118,7 @@ var invader = function (){
 			// Aボタンが押されたらビームを発射
 			if (game.input.a){
 				beam.flag = true;	// trueにしてビームが発射されている事を示すようにする
-				beam.x = fighter.x + 14;	// 自機の中央から出す
+				beam.x = fighter.x + fighter.width/2;	// 自機の中央から出す
 				beam.y = fighter.y - 11;	// 自機より少し上のY座標から出す
 			}
 		}
@@ -145,7 +136,7 @@ var invader = function (){
 		}
 		// ビームが発射されていない場合は自機と一緒に移動
 		if (!beam.flag){
-			beam.x = fighter.x + 14;	// 自機の中央に設置
+			beam.x = fighter.x + fighter.width/2;	// 自機の中央に設置
 			beam.y = fighter.y - 11;	// 自機より少し上のY座標に設置
 		}
 	}
@@ -181,7 +172,7 @@ var invader = function (){
 		if (!beam.flag){ return; }	// ビームが発射されていない場合は処理しない
 		for(var i=0; i<count; i++){
 			if (beam.intersect(enemy[i])){
-				startBlast(enemy[i].x, enemy[i].y);	// ★爆風発生
+				startBlast(enemy[i].x+enemy[i].width/2, enemy[i].y+enemy[i].height/2);	// ★爆風発生
 				beam.flag = false;	// 接触した場合はビームを消す
 				enemy[i].y = -9999;	// 見えない場所に移動
 				game.score = game.score + 1;	// スコアを加算(1点)
@@ -205,7 +196,7 @@ var invader = function (){
 		for(var i=0; i<maxLaser; i++){
 			if (enemyLaser[i].intersect(fighter)){	// 接触したらゲームオーバー
 				bgm.stop();
-				scene.backgroundColor = "red";	// ゲームの背景色を赤色に設定
+				// scene.backgroundColor = "red";	// ゲームの背景色を赤色に設定
 				game.pause();
 				setTimeout(function(){game.replaceScene(gameOver());game.resume();}, 2000);
 				// alert("自機が破壊されました。もう駄目です。スコアは"+game.score+"点でした");

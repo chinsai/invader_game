@@ -34,8 +34,8 @@ window.onload = function(){
 		// データの読み込みが完了したら処理
 		
 		// テスト用直接飛ぶ
-		// game.replaceScene( invader() );
-		game.replaceScene( startScreen() );
+		game.replaceScene( invader() );
+		// game.replaceScene( startScreen() );
 		// game.replaceScene( introduction() );
 		// game.replaceScene( stage1() );
 		// game.replaceScene( stage2() );
