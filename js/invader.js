@@ -93,6 +93,7 @@ var invader = function (){
 		moveBlast();		// 爆発の処理を行う
 		hitCheck();	// ビームと敵の接触判定
 		hitCheckLaser();	// レーザービームと自機の接触判定
+		loopMusic();
 
 	})
 
@@ -276,5 +277,11 @@ var invader = function (){
 		}
 	}
 
+	function loopMusic(){
+		// Loop BGM
+		if (bgm.currentTime >= bgm.duration ){
+		    bgm.play();
+		}
+	}
 	return scene;
 }
