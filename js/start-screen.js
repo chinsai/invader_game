@@ -6,21 +6,28 @@ var startScreen = function (){
 	// シーンの設定
 	var scene = new Scene();
 	scene.backgroundColor = 'black';
+	var background = new Sprite(1280, 720);
+	background.image =  game.assets['images/bgStart.jpg'];
+	background.x = 0;
+	background.y = 0;
+	scene.addChild(background);
 
 	//effect sound
-	var sound = game.assets['sound/select.wav'];
+	var sound = game.assets['sound/start.wav'];
+	var bgm = game.assets['sound/opening.mp3'];
+	bgm.play();
 
 	// タイトルの設定
 	var title = new Label('The Lord of the Ringo')
-	title.font = '400 80px "Helvetica Neue"';
-	title.width = 800;
+	title.font = '400 100px "Helvetica Neue"';
+	title.width = 1000;
 	title.color = 'white';
 	title.textAlign = 'center';
 	// title.scaleY = 2;
 	title.x = GAME_WIDTH/2 - title.width/2;		//中央にする
 	title.y = 0 + title.height/2;				//中央より上
 	scene.addChild(title);
-	title.tl.moveTo(GAME_WIDTH/2 - title.width/2, GAME_HEIGHT/2 - 200, 90, enchant.Easing.LINEAR);
+	title.tl.moveTo(GAME_WIDTH/2 - title.width/2, GAME_HEIGHT/2 - 100, 90, enchant.Easing.LINEAR);
 
 	// STARTボタンの設定
 	var startButton = new Label('press SPACE to start');
@@ -45,8 +52,9 @@ var startScreen = function (){
 	scene.addEventListener(Event.A_BUTTON_UP, function(){
 		sound.play();
 		title.tl.clear().fadeOut(30, enchant.Easing.LINEAR);
-		
+		background.tl.fadeOut(30, enchant.Easing.LINEAR);
 		startButton.tl.clear().fadeOut(30, enchant.Easing.LINEAR).then(function(){
+			bgm.stop();
 			game.replaceScene( introduction() );
 		});
 	})
@@ -55,7 +63,14 @@ var startScreen = function (){
 	//FRAMEごとに処理することはここにいれる
 	scene.addEventListener(Event.ENTER_FRAME, function(){
 		//TODO
+		loopMusic();
 	})
 
+	function loopMusic(){
+		// Loop BGM
+		if (bgm.currentTime >= bgm.duration ){
+		    bgm.play();
+		}
+	}
 	return scene;
 }

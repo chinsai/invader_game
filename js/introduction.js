@@ -14,6 +14,9 @@ var introduction = function (){
 	// TODO
 	// 	シーンの設定
 
+	var bgm = game.assets['sound/intro.mp3'];
+	bgm.play();
+
 	//background
 	var background = new Sprite(1280, 720);
 	background.image =  game.assets['images/intro.png'];
@@ -55,6 +58,7 @@ var introduction = function (){
 	scene.addEventListener(Event.ENTER_FRAME, function(){
 		//TODO
 		//---ここからコード
+		loopMusic();
 	})
 
 	// B (pause ボタンを離したとき)
@@ -72,7 +76,15 @@ var introduction = function (){
 
 	var nextStage = function(){
 		// game.replaceScene( stage1() );
-		game.replaceScene( invader() );
+		game.replaceScene( stage1() );
+		bgm.stop();
+	}
+
+	function loopMusic(){
+		// Loop BGM
+		if (bgm.currentTime >= bgm.duration ){
+		    bgm.play();
+		}
 	}
 
 	return scene;

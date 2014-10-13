@@ -43,12 +43,12 @@ var invader = function (){
 	background.y = 0;
 	scene.addChild(background);
 
-	var scoreLabel = new Label("SCORE : 0");
-	scoreLabel.font = "16px Tahoma";
-	scoreLabel.color = "white";
-	scoreLabel.x = 10;	// X座標
-	scoreLabel.y = 5;	// Y座標
-	scene.addChild(scoreLabel);
+	// var scoreLabel = new Label("SCORE : 0");
+	// scoreLabel.font = "16px Tahoma";
+	// scoreLabel.color = "white";
+	// scoreLabel.x = 10;	// X座標
+	// scoreLabel.y = 5;	// Y座標
+	// scene.addChild(scoreLabel);
 
 	var fighter = new Sprite(64, 64);
 	fighter.image = game.assets["images/character.png"];
@@ -183,7 +183,7 @@ var invader = function (){
 				}
 			}
 		}
-		scoreLabel.text = "SCORE : "+game.score;
+		// scoreLabel.text = "SCORE : "+game.score;
 	}
 	// ------------ ■自機と敵のレーザービームの接触判定を行う -----------------
 	function hitCheckLaser(){

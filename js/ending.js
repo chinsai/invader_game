@@ -8,6 +8,8 @@ var ending = function(){
 	// このシーンを管理するシーンの変数
 	var scene = new Scene();
 
+	var bgm = game.assets['sound/ending.mp3'];
+	bgm.play();
 	// TODO
 	// 	シーンの設定
 
