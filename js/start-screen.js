@@ -7,6 +7,9 @@ var startScreen = function (){
 	var scene = new Scene();
 	scene.backgroundColor = 'black';
 
+	//effect sound
+	var sound = game.assets['sound/select.wav'];
+
 	// タイトルの設定
 	var title = new Label('The Lord of the Ringo')
 	title.font = '400 80px "Helvetica Neue"';
@@ -39,7 +42,8 @@ var startScreen = function (){
 	// scene.addChild(icon);
 
 	// SPACE を離したときにゲーム始まる
-	scene.addEventListener(Event.A_BUTTON_UP, function(){	
+	scene.addEventListener(Event.A_BUTTON_UP, function(){
+		sound.play();
 		title.tl.clear().fadeOut(30, enchant.Easing.LINEAR);
 		
 		startButton.tl.clear().fadeOut(30, enchant.Easing.LINEAR).then(function(){
